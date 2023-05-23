@@ -1,0 +1,225 @@
+class Student {
+  constructor(name, id) {
+    this.name = name;
+    this.id = id;
+    this.grades = [];
+  }
+
+  addGrade(grade) {
+    if (this.isValidGrade(grade)) {
+      this.grades.push(grade);
+    } else {
+      console.log("Invalid grade. Enter a number between 0-100.");
+    }
+  }
+
+  removeGrade(index) {
+    this.grades.splice(index, 1);
+  }
+
+  calculateAverageGrade() {
+    const sum = this.grades.reduce((total, grade) => total + grade, 0);
+    return sum / this.grades.length;
+  }
+
+  getStudentInfo() {
+    const averageGrade = this.calculateAverageGrade();
+    return `Name: ${this.name}, ID: ${this.id}, Average Grade: ${averageGrade}`;
+  }
+
+  getName() {
+    return this.name;
+  }
+
+  getId() {
+    return this.id;
+  }
+
+  getAverageGrade() {
+    return this.calculateAverageGrade();
+  }
+
+  isValidGrade(grade) {
+    return grade >= 0 && grade <= 100;
+  }
+}
+
+class Course {
+  constructor(courseName) {
+    this.course = courseName;
+    this.students = [];
+  }
+
+  addStudent(id) {
+    if (this.isStudentEnrolled(id)) {
+      console.log(`The student with ID: ${id} is already enrolled in the ${this.course} course.`);
+    } else {
+      this.students.push(id);
+    }
+  }
+
+  removeStudent(id) {
+    const studentIndex = this.students.indexOf(id);
+    if (studentIndex !== -1) {
+      this.students.splice(studentIndex, 1);
+      console.log(`The student with ID: ${id} has been removed from the ${this.course} course.`);
+    } else {
+      console.log(`The student with ID: ${id} is not enrolled in the ${this.course} course.`);
+    }
+  }
+
+  getEnrolledStudents() {
+    console.log(this.students);
+  }
+
+  isStudentEnrolled(id) {
+    return this.students.includes(id);
+  }
+}
+
+const student1 = new Student("Juan Perez", "A01");
+const student2 = new Student("Dolores Decabeza", "A02");
+const student3 = new Student("Elba Surero", "A03");
+
+console.log("Student 1:", student1);
+
+student1.addGrade(80);
+student1.addGrade(90);
+student1.addGrade(100);
+let average = student1.calculateAverageGrade();
+
+console.log(average);
+console.log(student1.getName());
+console.log(student1.getId());
+console.log(student1.getAverageGrade());
+student1.getStudentInfo();
+
+const course1 = new Course("Calculus");
+console.log(course1);
+
+course1.getEnrolledStudents();
+course1.addStudent(student1.getId());
+course1.addStudent(student2.getId());
+course1.addStudent(student3.getId());
+course1.addStudent(student1.getId()); 
+
+course1.getEnrolledStudents();
+course1.removeStudent(student2.getId());
+course1.getEnrolledStudents();
+
+
+// Ex 3 //
+class Student {
+    constructor(name, id) {
+      this.name = name;
+      this.id = id;
+      this.grades = [];
+    }
+  
+    addGrade(grade) {
+      if (this.isValidGrade(grade)){
+        this.grades.push(grade);
+      }
+      else { 
+        console.log("Invalid grade. Please enter a grade between 0-100.");
+      }
+    }
+  
+    removeGrade(index) {
+      this.grades.splice(index, 1);
+    }
+  
+    calculateAverageGrade() {
+      const sum = this.grades.reduce((total, grade) => total + grade, 0);
+      return sum / this.grades.length;
+    }
+  
+    getStudentInfo() {
+      const averageGrade = this.calculateAverageGrade();
+      return `Name: ${this.name}, ID: ${this.id}, Average Grade: ${averageGrade}`;
+    }
+  
+    getName() {
+      return this.name;
+    }
+  
+    getId() {
+      return this.id;
+    }
+  
+    getAverageGrade() {
+      return this.calculateAverageGrade();
+    }
+  
+    isValidGrade(grade) {
+        return grade >= 0 && grade <= 100;
+    }
+}
+
+const student1 = new Student("Juan Perez", "A01");
+const student2 = new Student("Dolores Decabeza", "A02");
+const student3 = new Student("Elba Surero", "A03");
+
+console.log("Student 1:", student1);
+console.log("Student 2:", student2);
+console.log("Student 3:", student3);
+
+student1.addGrade(80);
+student1.addGrade(90);
+student1.addGrade(100);
+let average = student1.calculateAverageGrade();
+
+console.log(average);
+console.log(student1.getName());
+console.log(student1.getId());
+console.log(student1.getAverageGrade());
+student1.getStudentInfo();
+
+class Course {
+    constructor(courseName) {
+        this.course = courseName;
+        this.students = [];
+    }
+  
+    addStudents(student) {
+        if (this.isStudentEnrolled(student)) {
+            console.log(`The student is already added to the ${this.course} course.`);
+        } else {
+            this.students.push(student);
+        }
+    }
+  
+    removeStudents(student) {
+        const studentIndex = this.students.indexOf(student);
+        if (studentIndex !== -1) {
+            this.students.splice(studentIndex, 1);
+            console.log(`The student ${student.name} was found and removed from the ${this.course} course.`);
+        } else {
+            console.log(`The student ${student.name} is not enrolled in the ${this.course} course.`);
+        }
+    }
+  
+    getEnrolledStudents() {
+        console.log(this.students);
+    }
+  
+    isStudentEnrolled(student) {
+        return this.students.includes(student);
+    }
+}
+
+const course1 = new Course('Calculus');
+console.log(course1);
+
+course1.getEnrolledStudents();
+course1.addStudents(student1);
+course1.addStudents(student2);
+course1.addStudents(student3);
+
+
+course1.getEnrolledStudents();
+course1.removeStudents(student2);
+course1.removeStudents(student1);
+course1.getEnrolledStudents();
+
+
